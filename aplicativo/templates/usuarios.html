@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #cfcfcf;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            text-align: left;
+            background-color: #f2f2f2;
+        }
+
+        .button {
+            background-color: #2da19f;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            background-color: #cc0e15;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <h1>Lista de Usuários</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in lista_usuarios %}
+                <tr>
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.u_nome }}</td>
+                    <td>{{ usuario.u_email }}</td>
+                    <td>
+                        <a href="{% url 'atualizar_usuario' usuario.id %}" class="button">Alterar</a>
+                        <a href="{% url 'deletar_usuario' usuario.id %}" class="delete-button">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cadastrar_usuario' %}" class="button">Cadastrar</a>
+    </main>
+</body>
+</html>
